@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:space_iamge_app/screen/detail/astronomy_detail.dart';
+import 'package:space_iamge_app/screen/home/home_screen.dart';
 
 void main() {
-  runApp(const ProviderScope(child: MyApp()));
+  runApp(
+    const ProviderScope(
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -13,9 +17,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Astronomy App',
-      theme: ThemeData(primaryColor: Colors.blueAccent),
-      home: const AstronomyDetailScreen(),
+      title: 'Astronomy',
+      theme: ThemeData(primarySwatch: Colors.indigo),
+      home: const SafeArea(
+        child: HomeScreen(),
+      ),
     );
   }
 }

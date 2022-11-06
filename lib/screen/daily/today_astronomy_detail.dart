@@ -9,8 +9,8 @@ final astronomyDetailProvider =
   return data;
 });
 
-class AstronomyDetailScreen extends ConsumerWidget {
-  const AstronomyDetailScreen({Key? key}) : super(key: key);
+class TodayAstronomyDetailScreen extends ConsumerWidget {
+  const TodayAstronomyDetailScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
