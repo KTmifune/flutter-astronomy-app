@@ -18,16 +18,14 @@ class TodayAstronomyDetailScreen extends ConsumerWidget {
         ref.watch(astronomyDetailProvider('1'));
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Astronomy Detail"),
-      ),
       body: Center(
         child: apodData.when(
-            data: (apodData) {
-              return astronomyDetailBody(apodData);
-            },
-            error: (error, stack) => Text("$error"),
-            loading: () => const CircularProgressIndicator()),
+          data: (apodData) {
+            return astronomyDetailBody(apodData);
+          },
+          error: (error, stack) => Text("$error"),
+          loading: () => const CircularProgressIndicator(),
+        ),
       ),
     );
   }
@@ -60,11 +58,13 @@ class TodayAstronomyDetailScreen extends ConsumerWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 alignment: Alignment.topCenter,
-                child: Text(data.title,
-                    style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white)),
+                child: Text(
+                  data.title,
+                  style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white),
+                ),
               ),
               const SizedBox(
                 height: 10,
@@ -77,6 +77,9 @@ class TodayAstronomyDetailScreen extends ConsumerWidget {
                         fontSize: 10,
                         fontWeight: FontWeight.w300,
                         color: Colors.white)),
+              ),
+              const SizedBox(
+                height: 100,
               ),
             ],
           ),

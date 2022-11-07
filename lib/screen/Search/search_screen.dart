@@ -6,11 +6,10 @@ class SearchScreen extends ConsumerWidget {
   const SearchScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Search"),
+    return const Scaffold(
+      body: Center(
+        child: Text("Search"),
       ),
-      body: Container(),
     );
   }
 }

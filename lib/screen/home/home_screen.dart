@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:space_iamge_app/screen/Search/search_screen.dart';
+import 'package:space_iamge_app/screen/daily/today_astronomy_detail.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -26,6 +28,15 @@ class _HomeScreenState extends State<HomeScreen> {
     ),
   ];
 
+  static const List<Widget> _screens = [
+    TodayAstronomyDetailScreen(),
+    SearchScreen(),
+    FaIcon(
+      FontAwesomeIcons.star,
+      size: 150,
+    ),
+  ];
+
   final List<TabModel> _tabs = [
     TabModel(
         id: 1,
@@ -37,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
         activeIcon: const FaIcon(
           FontAwesomeIcons.satelliteDish,
           size: 30,
-          color: Colors.indigo,
+          color: Colors.white,
         ),
         name: "今日"),
     TabModel(
@@ -50,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
         activeIcon: const FaIcon(
           FontAwesomeIcons.rocket,
           size: 30,
-          color: Colors.indigo,
+          color: Colors.white,
         ),
         name: "探す"),
     TabModel(
@@ -63,7 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
         activeIcon: const FaIcon(
           FontAwesomeIcons.starOfDavid,
           size: 30,
-          color: Colors.indigo,
+          color: Colors.white,
         ),
         name: "お気に入り"),
   ];
@@ -79,15 +90,18 @@ class _HomeScreenState extends State<HomeScreen> {
   SizedBox navigationBar() {
     return SizedBox(
       height: 80.0,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          for (int i = 0; i < _tabs.length; i++)
-            GestureDetector(
-              onTap: () => setState(() => _selectedIndex = i),
-              child: iconBtn(i),
-            ),
-        ],
+      child: Container(
+        color: Colors.black87,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            for (int i = 0; i < _tabs.length; i++)
+              GestureDetector(
+                onTap: () => setState(() => _selectedIndex = i),
+                child: iconBtn(i),
+              ),
+          ],
+        ),
       ),
     );
   }
@@ -102,11 +116,11 @@ class _HomeScreenState extends State<HomeScreen> {
           AnimatedContainer(
             height: 5,
             width: width,
-            duration: const Duration(milliseconds: 150),
+            duration: const Duration(milliseconds: 200),
             child: isActive
                 ? Container(
                     decoration: const BoxDecoration(
-                      color: Colors.indigo,
+                      color: Colors.white,
                       borderRadius: BorderRadius.all(
                         Radius.circular(10.0),
                       ),
@@ -127,7 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
             curve: Curves.bounceInOut,
             style: isActive
                 ? const TextStyle(
-                    color: Colors.indigo,
+                    color: Colors.white,
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                   )
@@ -145,9 +159,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Home"),
-      ),
       // bottomNavigationBar: SizedBox(
       //   height: 78,
       //   child: BottomNavigationBar(
@@ -173,6 +184,10 @@ class _HomeScreenState extends State<HomeScreen> {
       // ),
       body: Stack(
         children: [
+          Align(
+            alignment: Alignment.center,
+            child: _screens[_selectedIndex],
+          ),
           Align(
             alignment: Alignment.bottomCenter,
             child: navigationBar(),
